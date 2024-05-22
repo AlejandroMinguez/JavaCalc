@@ -12,7 +12,7 @@ Este es un proyecto de una calculadora compleja desarrollada en Java utilizando 
 
 ## Capturas de Pantalla
 
-![Captura de pantalla](path/to/screenshot.png)
+![Captura de pantalla]()
 
 ## Requisitos
 
@@ -23,7 +23,7 @@ Este es un proyecto de una calculadora compleja desarrollada en Java utilizando 
 
 1. Clona este repositorio:
     ```bash
-    git clone https://github.com/tuusuario/calculadora-compleja.git
+    git clone https://github.com/AlejandroMinguez/JavaCalculator.git
     ```
 
 2. Importa el proyecto en tu IDE preferido (IntelliJ, Eclipse, etc.).
@@ -48,21 +48,4 @@ Para ejecutar la calculadora, simplemente ejecuta la clase `Main` desde tu IDE.
 ## Estructura del Proyecto
 
 ```plaintext
-calculadora-compleja/
-│
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   └── com/
-│   │   │       └── example/
-│   │   │           └── calculadoracompleja/
-│   │   │               ├── CalculadoraComplejaController.java
-│   │   │               ├── Main.java
-│   │   │               └── DTO/
-│   │   │                   └── Operaciones.java
-│   │   └── resources/
-│   │       └── com/
-│   │           └── example/
-│   │               └── calculadoracompleja/
-│   │                   └── calculadora.fxml
-└── README.md
+

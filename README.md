@@ -23,7 +23,7 @@ Este es un proyecto de una calculadora compleja desarrollada en Java utilizando 
 
 1. Clona este repositorio:
     ```bash
-    git clone https://github.com/AlejandroMinguez/JavaCalculator.git
+       https://github.com/AlejandroMinguez/JavaCalculator.git
     ```
 
 2. Importa el proyecto en tu IDE preferido (IntelliJ, Eclipse, etc.).
@@ -48,4 +48,60 @@ Para ejecutar la calculadora, simplemente ejecuta la clase `Main` desde tu IDE.
 ## Estructura del Proyecto
 
 ```plaintext
-
+│   .gitignore
+│   mvnw
+│   mvnw.cmd
+│   pom.xml
+│
+├───.idea
+│       .gitignore
+│       compiler.xml
+│       encodings.xml
+│       jarRepositories.xml
+│       misc.xml
+│       uiDesigner.xml
+│       vcs.xml
+│       workspace.xml
+│
+├───.mvn
+│   └───wrapper
+│           maven-wrapper.jar
+│           maven-wrapper.properties
+│
+├───src
+│   └───main
+│       ├───java
+│       │   │   module-info.java
+│       │   │
+│       │   └───com
+│       │       └───example
+│       │           └───calculadoracompleja
+│       │               │   calculadoraCompleja.java
+│       │               │   CalculadoraComplejaController.java
+│       │               │
+│       │               └───DTO
+│       │                       Operaciones.java
+│       │
+│       └───resources
+│           └───com
+│               └───example
+│                   └───calculadoracompleja
+│                           calculadoraCompleja-view.fxml
+│
+└───target
+    ├───classes
+    │   │   module-info.class
+    │   │
+    │   └───com
+    │       └───example
+    │           └───calculadoracompleja
+    │               │   calculadoraCompleja-view.fxml
+    │               │   calculadoraCompleja.class
+    │               │   CalculadoraComplejaController$1.class
+    │               │   CalculadoraComplejaController.class
+    │               │
+    │               └───DTO
+    │                       Operaciones.class
+    │
+    └───generated-sources
+        └───annotations

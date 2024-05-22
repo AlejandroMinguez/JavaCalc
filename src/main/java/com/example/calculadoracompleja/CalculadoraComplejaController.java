@@ -1,10 +1,17 @@
 package com.example.calculadoracompleja;
 
 import com.example.calculadoracompleja.DTO.Operaciones;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -24,11 +31,9 @@ public class CalculadoraComplejaController  implements Initializable {
     @FXML
     public void onClickButtonBorradoPantalla() {
         labPantalla.setText("0");
-        numOperandos = 0;
         puntoOp = false;
         digito = false;
     }
-
     @FXML
     protected void onClickButtonSumar() {
         if (!labPantalla.getText().equals("0") && digito && numOperandos==0) {
@@ -37,13 +42,24 @@ public class CalculadoraComplejaController  implements Initializable {
             puntoOp=false;
             operador="+";
         }
+        if (labPantalla.getText().endsWith(operador)){
+            labPantalla.setText(labPantalla.getText().substring(0, labPantalla.getText().length() - 1) + "+");
+            numOperandos++;
+            puntoOp=false;
+            operador="+";
+        }
 
 
     }
-    @FXML
     public void onClickButtonRestar() {
         if (!labPantalla.getText().equals("0") && digito && numOperandos==0){
             labPantalla.setText(labPantalla.getText() + "-");
+            numOperandos++;
+            puntoOp=false;
+            operador="-";
+        }
+        if (labPantalla.getText().endsWith(operador)){
+            labPantalla.setText(labPantalla.getText().substring(0, labPantalla.getText().length() - 1) + "-");
             numOperandos++;
             puntoOp=false;
             operador="-";
@@ -57,6 +73,12 @@ public class CalculadoraComplejaController  implements Initializable {
             puntoOp=false;
             operador="x";
         }
+        if (labPantalla.getText().endsWith(operador)){
+            labPantalla.setText(labPantalla.getText().substring(0, labPantalla.getText().length() - 1) + "x");
+            numOperandos++;
+            puntoOp=false;
+            operador="x";
+        }
     }
     @FXML
     public void onClickButtonDividir() {
@@ -66,11 +88,23 @@ public class CalculadoraComplejaController  implements Initializable {
             puntoOp=false;
             operador="/";
         }
+        if (labPantalla.getText().endsWith(operador)){
+            labPantalla.setText(labPantalla.getText().substring(0, labPantalla.getText().length() - 1) + "/");
+            numOperandos++;
+            puntoOp=false;
+            operador="/";
+        }
     }
     @FXML
     public void onClickButtonResto() {
         if (!labPantalla.getText().equals("0") && digito && numOperandos==0){
             labPantalla.setText(labPantalla.getText() + "%");
+            numOperandos++;
+            puntoOp=false;
+            operador="%";
+        }
+        if (labPantalla.getText().endsWith(operador)){
+            labPantalla.setText(labPantalla.getText().substring(0, labPantalla.getText().length() - 1) + "%");
             numOperandos++;
             puntoOp=false;
             operador="%";
@@ -86,7 +120,6 @@ public class CalculadoraComplejaController  implements Initializable {
             }
         }
     }
-
     @FXML
     public void onClickButtonPunto(){
         if (!labPantalla.getText().contains(".") && !puntoOp){
@@ -195,54 +228,159 @@ public class CalculadoraComplejaController  implements Initializable {
 
     @FXML
     public void onClickResultado() {
-        subOperando = labPantalla.getText().split(Pattern.quote(operador));
-        op.setOp1(Double.parseDouble(subOperando[0]));
-        op.setOp2(Double.parseDouble(subOperando[1]));
-        switch (operador){
-            case "+":
-                if (op.Sumar(op.getOp1(), op.getOp2()).endsWith(".0")){
-                    labPantalla.setText(op.Sumar(op.getOp1(), op.getOp2()).replace(".0",""));
-                }else {
-                    labPantalla.setText(op.Sumar(op.getOp1(), op.getOp2()));
-                };
-                break;
-            case "-":
-                if (op.Restar(op.getOp1(), op.getOp2()).endsWith(".0")){
-                    labPantalla.setText(op.Restar(op.getOp1(), op.getOp2()).replace(".0",""));
-                }else {
-                    labPantalla.setText(op.Restar(op.getOp1(), op.getOp2()));
-                };
-                break;
+        try {
+            subOperando = labPantalla.getText().split(Pattern.quote(operador));
+            op.setOp1(Double.parseDouble(subOperando[0]));
+            op.setOp2(Double.parseDouble(subOperando[1]));
+            switch (operador){
+                case "+":
+                    if (op.Sumar(op.getOp1(), op.getOp2()).endsWith(".0")){
+                        labPantalla.setText(op.Sumar(op.getOp1(), op.getOp2()).replace(".0",""));
+                    }else {
+                        labPantalla.setText(op.Sumar(op.getOp1(), op.getOp2()));
+                    };
+                    break;
+                case "-":
+                    if (op.Restar(op.getOp1(), op.getOp2()).endsWith(".0")){
+                        labPantalla.setText(op.Restar(op.getOp1(), op.getOp2()).replace(".0",""));
+                    }else {
+                        labPantalla.setText(op.Restar(op.getOp1(), op.getOp2()));
+                    };
+                    break;
 
-            case "/":
-                if (op.Multiplicar(op.getOp1(), op.getOp2()).endsWith(".0")){
-                    labPantalla.setText(op.Multiplicar(op.getOp1(), op.getOp2()).replace(".0",""));
-                }else {
-                    labPantalla.setText(op.Multiplicar(op.getOp1(), op.getOp2()));
-                };
-                break;
-            case "x":
-                if (op.Dividir(op.getOp1(), op.getOp2()).endsWith(".0")){
-                    labPantalla.setText(op.Dividir(op.getOp1(), op.getOp2()).replace(".0",""));
-                }else {
-                    labPantalla.setText(op.Dividir(op.getOp1(), op.getOp2()));
-                };
-                break;
-            case "%":
-                if (op.Resto(op.getOp1(), op.getOp2()).endsWith(".0")){
-                    labPantalla.setText(op.Resto(op.getOp1(), op.getOp2()).replace(".0",""));
-                }else {
-                    labPantalla.setText(op.Resto(op.getOp1(), op.getOp2()));
-                };
-                break;
+                case "/":
+                    if (op.Multiplicar(op.getOp1(), op.getOp2()).endsWith(".0")){
+                        labPantalla.setText(op.Multiplicar(op.getOp1(), op.getOp2()).replace(".0",""));
+                    }else {
+                        labPantalla.setText(op.Multiplicar(op.getOp1(), op.getOp2()));
+                    };
+                    break;
+                case "x":
+                    if (op.Dividir(op.getOp1(), op.getOp2()).endsWith(".0")){
+                        labPantalla.setText(op.Dividir(op.getOp1(), op.getOp2()).replace(".0",""));
+                    }else {
+                        labPantalla.setText(op.Dividir(op.getOp1(), op.getOp2()));
+                    };
+                    break;
+                case "%":
+                    if (op.Resto(op.getOp1(), op.getOp2()).endsWith(".0")){
+                        labPantalla.setText(op.Resto(op.getOp1(), op.getOp2()).replace(".0",""));
+                    }else {
+                        labPantalla.setText(op.Resto(op.getOp1(), op.getOp2()));
+                    };
+                    break;
+
+            }
+            digito = true;
+            numOperandos = 0;
+
+        }catch (Exception e){
+            labPantalla.setText("Error");
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), ev -> labPantalla.setText("0")));
+            timeline.play();
         }
-        numOperandos = 0;
-        digito = true;
+
+
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         op = new Operaciones(0,0);
         labPantalla.setText("0");
+        numOperandos = 0;
+
+    }
+
+    public void configureKeyInput(Scene scene) {
+        scene.setOnKeyPressed(this::handleKeyInput);
+    }
+
+    private void handleKeyInput(KeyEvent event) {
+        switch (event.getCode()) {
+            case DIGIT0:
+            case NUMPAD0:
+                onClickButtonCero();
+                break;
+            case DIGIT1:
+            case NUMPAD1:
+                onClickButtonUno();
+                break;
+            case DIGIT2:
+            case NUMPAD2:
+                onClickButtonDos();
+                break;
+            case DIGIT3:
+            case NUMPAD3:
+                onClickButtonTres();
+                break;
+            case DIGIT4:
+            case NUMPAD4:
+                onClickButtonCuatro();
+                break;
+            case DIGIT5:
+            case NUMPAD5:
+                if (event.isShiftDown()) {
+                    onClickButtonResto();
+                } else {
+                    onClickButtonCinco();
+                }
+                break;
+            case DIGIT6:
+            case NUMPAD6:
+                onClickButtonSeis();
+                break;
+            case DIGIT7:
+            case NUMPAD7:
+                onClickButtonSiete();
+                break;
+            case DIGIT8:
+            case NUMPAD8:
+                onClickButtonOcho();
+                break;
+            case DIGIT9:
+            case NUMPAD9:
+                onClickButtonNueve();
+                break;
+            case DECIMAL:
+            case PERIOD:
+                onClickButtonPunto();
+                break;
+            case ADD:
+            case PLUS:
+                onClickButtonSumar();
+                break;
+            case SUBTRACT:
+            case MINUS:
+                onClickButtonRestar();
+                break;
+            case MULTIPLY:
+                onClickButtonMultiplicar();
+                break;
+            case DIVIDE:
+                onClickButtonDividir();
+                break;
+            case ENTER:
+            case EQUALS:
+                onClickResultado();
+                break;
+            case ESCAPE:
+                onClickButtonBorradoPantalla();
+                break;
+            case BACK_SPACE:
+                String text = labPantalla.getText();
+                if (!text.isEmpty() && !labPantalla.getText().endsWith(operador)) {
+                    labPantalla.setText(text.substring(0, text.length() - 1));
+                }
+                if (labPantalla.getText().endsWith(operador)){
+                    labPantalla.setText(text.substring(0, text.length() - 1));
+                    numOperandos = 0;
+                    puntoOp=false;
+                    digito=true;
+                }
+                break;
+
+            default:
+                break;
+        }
     }
 }

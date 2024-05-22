@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="491.0" prefWidth="343.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.calculadoracompleja.CalculadoraComplejaController">
+<AnchorPane prefHeight="481.0" prefWidth="347.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.calculadoracompleja.CalculadoraComplejaController">
    <children>
-      <Label fx:id="labPantalla" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="-1.0" prefHeight="86.0" prefWidth="347.0" style="-fx-background-color: BLACK;" textAlignment="RIGHT" textFill="WHITE" wrapText="true" AnchorPane.rightAnchor="0.0013105361007319516">
+      <Label fx:id="labPantalla" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="86.0" prefWidth="347.0" style="-fx-background-color: BLACK;" textAlignment="RIGHT" textFill="WHITE" wrapText="true">
          <font>
             <Font size="48.0" />
          </font>
       </Label>
-      <GridPane layoutY="85.0" prefHeight="402.0" prefWidth="346.0">
+      <GridPane layoutY="85.0" prefHeight="402.0" prefWidth="347.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -125,6 +125,7 @@
                   <Font size="28.0" />
                </font>
             </Button>
+            <AnchorPane prefHeight="511.0" prefWidth="442.0" GridPane.columnIndex="3" />
          </children>
       </GridPane>
    </children>

@@ -12,7 +12,7 @@ Este es un proyecto de una calculadora compleja desarrollada en Java utilizando 
 
 ## Capturas de Pantalla
 
-![Captura de pantalla]()
+[![Calculadora.png](https://i.postimg.cc/4yVPd9Y2/image.png)](https://postimg.cc/rRyxZzC5)
 
 ## Requisitos
 

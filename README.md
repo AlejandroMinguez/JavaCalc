@@ -32,7 +32,7 @@ Este es un proyecto de una calculadora compleja desarrollada en Java utilizando 
 
 ## Uso
 
-Para ejecutar la calculadora, simplemente ejecuta la clase `Main` desde tu IDE.
+Para ejecutar la calculadora, simplemente ejecuta la clase `calculadoraCompleja.java` desde tu IDE.
 
 ### Controles
 

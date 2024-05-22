@@ -1,24 +1,16 @@
 package com.example.calculadoracompleja;
-
 import com.example.calculadoracompleja.DTO.Operaciones;
-import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import java.net.URL;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
-
 public class CalculadoraComplejaController  implements Initializable {
     @FXML
     private Label labPantalla;
@@ -48,8 +40,6 @@ public class CalculadoraComplejaController  implements Initializable {
             puntoOp=false;
             operador="+";
         }
-
-
     }
     public void onClickButtonRestar() {
         if (!labPantalla.getText().equals("0") && digito && numOperandos==0){
@@ -170,7 +160,6 @@ public class CalculadoraComplejaController  implements Initializable {
             labPantalla.setText("4");
         }else {
             labPantalla.setText(labPantalla.getText()+"4");
-
         }
         digito=true;
     }
@@ -191,7 +180,6 @@ public class CalculadoraComplejaController  implements Initializable {
             labPantalla.setText(labPantalla.getText()+"6");
         }
         digito=true;
-
     }
     @FXML
     public void onClickButtonSiete(){
@@ -199,7 +187,6 @@ public class CalculadoraComplejaController  implements Initializable {
             labPantalla.setText("7");
         }else {
             labPantalla.setText(labPantalla.getText()+"7");
-
         }
         digito=true;
     }
@@ -209,7 +196,6 @@ public class CalculadoraComplejaController  implements Initializable {
             labPantalla.setText("8");
         }else {
             labPantalla.setText(labPantalla.getText()+"8");
-
         }
         digito=true;
     }
@@ -219,12 +205,10 @@ public class CalculadoraComplejaController  implements Initializable {
             labPantalla.setText("9");
         }else {
             labPantalla.setText(labPantalla.getText()+"9");
-
         }
         digito=true;
     }
     String[] subOperando;
-
 
     @FXML
     public void onClickResultado() {
@@ -249,17 +233,17 @@ public class CalculadoraComplejaController  implements Initializable {
                     break;
 
                 case "/":
-                    if (op.Multiplicar(op.getOp1(), op.getOp2()).endsWith(".0")){
-                        labPantalla.setText(op.Multiplicar(op.getOp1(), op.getOp2()).replace(".0",""));
-                    }else {
-                        labPantalla.setText(op.Multiplicar(op.getOp1(), op.getOp2()));
-                    };
-                    break;
-                case "x":
                     if (op.Dividir(op.getOp1(), op.getOp2()).endsWith(".0")){
                         labPantalla.setText(op.Dividir(op.getOp1(), op.getOp2()).replace(".0",""));
                     }else {
                         labPantalla.setText(op.Dividir(op.getOp1(), op.getOp2()));
+                    };
+                    break;
+                case "x":
+                    if (op.Multiplicar(op.getOp1(), op.getOp2()).endsWith(".0")){
+                        labPantalla.setText(op.Multiplicar(op.getOp1(), op.getOp2()).replace(".0",""));
+                    }else {
+                        labPantalla.setText(op.Multiplicar(op.getOp1(), op.getOp2()));
                     };
                     break;
                 case "%":
@@ -269,7 +253,6 @@ public class CalculadoraComplejaController  implements Initializable {
                         labPantalla.setText(op.Resto(op.getOp1(), op.getOp2()));
                     };
                     break;
-
             }
             digito = true;
             numOperandos = 0;
@@ -279,22 +262,16 @@ public class CalculadoraComplejaController  implements Initializable {
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.5), ev -> labPantalla.setText("0")));
             timeline.play();
         }
-
-
     }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         op = new Operaciones(0,0);
         labPantalla.setText("0");
         numOperandos = 0;
-
     }
-
     public void configureKeyInput(Scene scene) {
         scene.setOnKeyPressed(this::handleKeyInput);
     }
-
     private void handleKeyInput(KeyEvent event) {
         switch (event.getCode()) {
             case DIGIT0:
@@ -378,7 +355,6 @@ public class CalculadoraComplejaController  implements Initializable {
                     digito=true;
                 }
                 break;
-
             default:
                 break;
         }
